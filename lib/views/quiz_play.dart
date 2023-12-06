@@ -9,7 +9,7 @@ import '../widgets/quiz_play_widgets.dart';
 
 class QuizPlay extends StatefulWidget {
   final String quizId;
-  QuizPlay(this.quizId);
+  const QuizPlay(this.quizId, {super.key});
 
   @override
   _QuizPlayState createState() => _QuizPlayState();
@@ -39,15 +39,8 @@ class _QuizPlayState extends State<QuizPlay> {
       isLoading = false;
       total = questionSnaphot.docs.length;
       setState(() {});
-      print("init don $total ${widget.quizId} ");
+      debugPrint("init don $total ${widget.quizId} ");
     });
-
-    if (infoStream == null) {
-      infoStream = Stream<List<int>>.periodic(Duration(milliseconds: 100), (x) {
-        print("this is x $x");
-        return [_correct, _incorrect];
-      });
-    }
 
     super.initState();
   }
@@ -92,7 +85,7 @@ class _QuizPlayState extends State<QuizPlay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AppLogo(),
+        title: const AppLogo(),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -100,7 +93,7 @@ class _QuizPlayState extends State<QuizPlay> {
       ),
       body: isLoading
           ? Container(
-              child: Center(child: CircularProgressIndicator()),
+              child: const Center(child: CircularProgressIndicator()),
             )
           : SingleChildScrollView(
               child: Container(
@@ -109,19 +102,19 @@ class _QuizPlayState extends State<QuizPlay> {
                     InfoHeader(
                       length: questionSnaphot.docs.length,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     questionSnaphot.docs.isNotEmpty
                         ? Container(
-                            child: Center(
+                            child: const Center(
                               child: Text("No Data"),
                             ),
                           )
                         : ListView.builder(
                             itemCount: questionSnaphot.docs.length,
                             shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
+                            physics: const ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
                               return QuizPlayTile(
                                 questionModel: getQuestionModelFromDatasnapshot(
@@ -140,7 +133,7 @@ class _QuizPlayState extends State<QuizPlay> {
 class InfoHeader extends StatefulWidget {
   final int length;
 
-  InfoHeader({required this.length});
+  const InfoHeader({super.key, required this.length});
 
   @override
   _InfoHeaderState createState() => _InfoHeaderState();
@@ -155,7 +148,7 @@ class _InfoHeaderState extends State<InfoHeader> {
           return snapshot.hasData
               ? Container(
                   height: 40,
-                  margin: EdgeInsets.only(left: 14),
+                  margin: const EdgeInsets.only(left: 14),
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
@@ -188,7 +181,8 @@ class QuizPlayTile extends StatefulWidget {
   final QuestionModel questionModel;
   final int index;
 
-  QuizPlayTile({required this.questionModel, required this.index});
+  const QuizPlayTile(
+      {super.key, required this.questionModel, required this.index});
 
   @override
   _QuizPlayTileState createState() => _QuizPlayTileState();
@@ -204,14 +198,14 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               "Q${widget.index + 1} ${widget.questionModel.question}",
               style:
                   TextStyle(fontSize: 18, color: Colors.black.withOpacity(0.8)),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           GestureDetector(
@@ -238,12 +232,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "A",
-              description: "${widget.questionModel.option1}",
+              description: widget.questionModel.option1,
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           GestureDetector(
@@ -270,12 +264,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "B",
-              description: "${widget.questionModel.option2}",
+              description: widget.questionModel.option2,
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           GestureDetector(
@@ -302,12 +296,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "C",
-              description: "${widget.questionModel.option3}",
+              description: widget.questionModel.option3,
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           GestureDetector(
@@ -334,12 +328,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
             },
             child: OptionTile(
               option: "D",
-              description: "${widget.questionModel.option4}",
+              description: widget.questionModel.option4,
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],

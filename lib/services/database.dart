@@ -6,12 +6,7 @@ class DatabaseService {
   DatabaseService({required this.uid});
 
   Future<void> addData(userData) async {
-    FirebaseFirestore.instance
-        .collection("users")
-        .add(userData)
-        .catchError((e) {
-      print(e);
-    });
+    FirebaseFirestore.instance.collection("users").add(userData);
   }
 
   getData() async {
@@ -22,10 +17,7 @@ class DatabaseService {
     await FirebaseFirestore.instance
         .collection("Quiz")
         .doc(quizId)
-        .set(quizData)
-        .catchError((e) {
-      print(e);
-    });
+        .set(quizData);
   }
 
   Future<void> addQuestionData(quizData, String quizId) async {
@@ -33,10 +25,7 @@ class DatabaseService {
         .collection("Quiz")
         .doc(quizId)
         .collection("QNA")
-        .add(quizData)
-        .catchError((e) {
-      print(e);
-    });
+        .add(quizData);
   }
 
   getQuizData() async {

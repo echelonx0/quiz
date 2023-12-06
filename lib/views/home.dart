@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -18,34 +18,31 @@ class _HomeState extends State<Home> {
   DatabaseService databaseService = DatabaseService(uid: '');
 
   Widget quizList() {
-    return Container(
-      child: Column(
-        children: [
-          StreamBuilder(
-            stream: quizStream,
-            builder: (context, snapshot) {
-              return snapshot.data == null
-                  ? Container()
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (context, index) {
-                        return QuizTile(
-                          noOfQuestions: snapshot.data.documents.length,
-                          imageUrl:
-                              snapshot.data.documents[index].data['quizImgUrl'],
-                          title:
-                              snapshot.data.documents[index].data['quizTitle'],
-                          description:
-                              snapshot.data.documents[index].data['quizDesc'],
-                          id: snapshot.data.documents[index].data["id"],
-                        );
-                      });
-            },
-          )
-        ],
-      ),
+    return Column(
+      children: [
+        StreamBuilder(
+          stream: quizStream,
+          builder: (context, snapshot) {
+            return snapshot.data == null
+                ? Container()
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) {
+                      return QuizTile(
+                        noOfQuestions: snapshot.data.documents.length,
+                        imageUrl:
+                            snapshot.data.documents[index].data['quizImgUrl'],
+                        title: snapshot.data.documents[index].data['quizTitle'],
+                        description:
+                            snapshot.data.documents[index].data['quizDesc'],
+                        id: snapshot.data.documents[index].data["id"],
+                      );
+                    });
+          },
+        )
+      ],
     );
   }
 
@@ -63,7 +60,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: AppLogo(),
+        title: const AppLogo(),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -71,10 +68,10 @@ class _HomeState extends State<Home> {
       ),
       body: quizList(),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CreateQuiz()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const CreateQuiz()));
         },
       ),
     );
@@ -85,8 +82,9 @@ class QuizTile extends StatelessWidget {
   final String imageUrl, title, id, description;
   final int noOfQuestions;
 
-  QuizTile(
-      {required this.title,
+  const QuizTile(
+      {super.key,
+      required this.title,
       required this.imageUrl,
       required this.description,
       required this.id,
@@ -100,7 +98,7 @@ class QuizTile extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => QuizPlay(id)));
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         height: 150,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
@@ -119,17 +117,17 @@ class QuizTile extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
                         description,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 13,
                             color: Colors.white,
                             fontWeight: FontWeight.w500),

@@ -51,10 +51,10 @@ class _CreateQuizState extends State<CreateQuiz> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: BackButton(
+        leading: const BackButton(
           color: Colors.black54,
         ),
-        title: AppLogo(),
+        title: const AppLogo(),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -63,40 +63,40 @@ class _CreateQuizState extends State<CreateQuiz> {
       body: Form(
         key: _formKey,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
               TextFormField(
                 validator: (val) =>
                     val!.isEmpty ? "Enter Quiz Image Url" : null,
                 decoration:
-                    InputDecoration(hintText: "Quiz Image Url (Optional)"),
+                    const InputDecoration(hintText: "Quiz Image Url (Optional)"),
                 onChanged: (val) {
                   quizImgUrl = val;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               TextFormField(
                 validator: (val) => val!.isEmpty ? "Enter Quiz Title" : null,
-                decoration: InputDecoration(hintText: "Quiz Title"),
+                decoration: const InputDecoration(hintText: "Quiz Title"),
                 onChanged: (val) {
                   quizTitle = val;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               TextFormField(
                 validator: (val) =>
                     val!.isEmpty ? "Enter Quiz Description" : null,
-                decoration: InputDecoration(hintText: "Quiz Description"),
+                decoration: const InputDecoration(hintText: "Quiz Description"),
                 onChanged: (val) {
                   quizDesc = val;
                 },
               ),
-              Spacer(),
+              const Spacer(),
               GestureDetector(
                 onTap: () {
                   createQuiz();
@@ -104,17 +104,17 @@ class _CreateQuizState extends State<CreateQuiz> {
                 child: Container(
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(30)),
-                  child: Text(
+                  child: const Text(
                     "Create Quiz",
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
             ],

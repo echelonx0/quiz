@@ -44,7 +44,7 @@ class _SignUpState extends State<SignUp> {
         Constants.saveUserLoggedInSharedPreference(true);
 
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => const Home()));
       });
     }
   }
@@ -54,19 +54,19 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: AppLogo(),
+        title: const AppLogo(),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
         //brightness: Brightness.li,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: _loading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Column(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Form(
                     key: _formKey,
                     child: Container(
@@ -75,24 +75,24 @@ class _SignUpState extends State<SignUp> {
                           TextFormField(
                             validator: (val) =>
                                 val!.isEmpty ? "Enter an Name" : null,
-                            decoration: InputDecoration(hintText: "Name"),
+                            decoration: const InputDecoration(hintText: "Name"),
                             onChanged: (val) {
                               name = val;
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           TextFormField(
                             validator: (val) => validateEmail(email)
                                 ? null
                                 : "Enter correct email",
-                            decoration: InputDecoration(hintText: "Email"),
+                            decoration: const InputDecoration(hintText: "Email"),
                             onChanged: (val) {
                               email = val;
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           TextFormField(
@@ -100,12 +100,12 @@ class _SignUpState extends State<SignUp> {
                             validator: (val) => val!.length < 6
                                 ? "Password must be 6+ characters"
                                 : null,
-                            decoration: InputDecoration(hintText: "Password"),
+                            decoration: const InputDecoration(hintText: "Password"),
                             onChanged: (val) {
                               password = val;
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 24,
                           ),
                           GestureDetector(
@@ -115,25 +115,25 @@ class _SignUpState extends State<SignUp> {
                             child: Container(
                               alignment: Alignment.center,
                               width: MediaQuery.of(context).size.width,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 20),
                               decoration: BoxDecoration(
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(30)),
-                              child: Text(
+                              child: const Text(
                                 "Sign Up",
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('Already have and account? ',
+                              const Text('Already have and account? ',
                                   style: TextStyle(
                                       color: Colors.black87, fontSize: 17)),
                               GestureDetector(
@@ -141,7 +141,7 @@ class _SignUpState extends State<SignUp> {
                                   widget.toogleView();
                                 },
                                 child: Container(
-                                  child: Text('Sign In',
+                                  child: const Text('Sign In',
                                       style: TextStyle(
                                           color: Colors.black87,
                                           decoration: TextDecoration.underline,
@@ -154,7 +154,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   )
                 ],

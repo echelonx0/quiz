@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Results extends StatefulWidget {
   final int total, correct, incorrect, notattempted;
   const Results(
-      {required this.incorrect,
+      {super.key, required this.incorrect,
       required this.total,
       required this.correct,
       required this.notattempted});
@@ -23,19 +23,19 @@ class _ResultsState extends State<Results> {
             children: [
               Text(
                 "${widget.correct}/ ${widget.total}",
-                style: TextStyle(fontSize: 25),
+                style: const TextStyle(fontSize: 25),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
                   "you answered ${widget.correct} answers correctly and ${widget.incorrect} answeres incorrectly",
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               GestureDetector(
@@ -43,11 +43,11 @@ class _ResultsState extends State<Results> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                   decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(30)),
-                  child: Text(
+                  child: const Text(
                     "Go to home",
                     style: TextStyle(color: Colors.white, fontSize: 19),
                   ),
