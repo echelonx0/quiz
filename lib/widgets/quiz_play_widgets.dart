@@ -4,13 +4,14 @@ class OptionTile extends StatefulWidget {
   final String option, description, correctAnswer, optionSelected;
 
   const OptionTile(
-      {super.key, required this.description,
+      {super.key,
+      required this.description,
       required this.correctAnswer,
       required this.option,
       required this.optionSelected});
 
   @override
-  _OptionTileState createState() => _OptionTileState();
+  State<OptionTile> createState() => _OptionTileState();
 }
 
 class _OptionTileState extends State<OptionTile> {
